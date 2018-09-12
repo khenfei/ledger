@@ -63,6 +63,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "ledger_#{Rails.env}"
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              Rails.application.credentials.dev[:smtp_addr],
+    port:                 Rails.application.credentials.dev[:smtp_port],
+    domain:               'khenfei.com',
+    user_name:            Rails.application.credentials.dev[:smtp_user],
+    password:             Rails.application.credentials.dev[:smtp_pass],
+    authentication:       'plain',
+    enable_starttls_auto: true }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
