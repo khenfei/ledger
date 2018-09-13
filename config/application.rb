@@ -17,5 +17,7 @@ module Ledger
     end
 
     config.generators.javascript_engine = :js
+    
+    config.active_record.schema_format = :sql
   end
 end

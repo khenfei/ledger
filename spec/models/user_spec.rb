@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "is valid with a email, and password" do
+  it "is valid with an email, and password" do
     user = FactoryBot.build(:user)
     user.valid?
     expect(user.errors).to be_empty
