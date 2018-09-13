@@ -15,5 +15,7 @@ module Ledger
         helper_specs: false,
         routing_specs: false
     end
+
+    config.generators.javascript_engine = :js
   end
 end

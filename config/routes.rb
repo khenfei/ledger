@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'welcome/index'
+  get 'home/index'
   get 'dummy', to: 'dummy#index'
-  root to: 'welcome#index'
+  root to: 'home#index'
 end
