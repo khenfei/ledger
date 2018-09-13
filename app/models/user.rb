@@ -4,4 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+  
+  def name
+    /^(.*)@.*/ =~ email
+    Regexp.last_match(1)
+  end
 end
