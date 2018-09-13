@@ -18,11 +18,11 @@ RSpec.describe AuthenticatedOnlyController, type: :controller do
       end
     end
     context "as a guess" do
-      it "redirects to home page (root)" do
+      it "redirects to sign in page" do
         get :index
         aggregate_failures do
           expect(response).to have_http_status "302"
-          expect(response).to redirect_to (root_path)
+          expect(response).to redirect_to new_user_session_path
         end
       end
     end
