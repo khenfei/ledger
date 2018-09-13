@@ -1,0 +1,2 @@
+module AuthenticatedOnlyHelper
+end
