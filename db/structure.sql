@@ -32,7 +32,7 @@ CREATE TYPE public.expenses_category AS ENUM (
     'grocery',
     'meal',
     'utility',
-    'misc'
+    'other'
 );
 
 

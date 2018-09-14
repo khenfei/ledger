@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ExpensesController, type: :controller do
+  let(:user) { FactoryBot.create(:user) }
+  let(:expense) { FactoryBot.create(:expense, owner: user )}
   describe "#index" do
     context "as an authenticated user" do
-      before do
-        @user = FactoryBot.create(:user)
-      end
       it "responds successfully" do
-        sign_in @user
+        sign_in user
         get :index
         expect(response).to have_http_status(:success)
       end
@@ -33,34 +32,58 @@ RSpec.describe ExpensesController, type: :controller do
 
   describe "#new" do
     context "as an authenticated user" do
-      it "responds successfully"
+      it "responds successfully" do
+        sign_in user
+        get :new
+        expect(response).to have_http_status(:success)
+      end
     end
     context "as a guest" do
-      it "redirects to sign_in page"
+      it "redirects to sign_in page" do
+        get :new
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to new_user_session_path
+      end
     end
   end
 
   describe "#show" do
     context "as an authenticated user" do
-      it "responds successfully"
+      it "responds successfully" do
+        sign_in user
+        get :show, params: { id: expense.id }
+        expect(response).to have_http_status(:success)
+      end
     end
     context "as an unauthorized user" do
       it "redirects to index page"
     end
     context "as a guest" do
-      it "redirects to sign_in page"
+      it "redirects to sign_in page" do
+        get :show, params: { id: expense.id }
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to new_user_session_path
+      end
     end
   end
 
   describe "#edit" do
     context "as an authenticated user" do
-      it "responds successfully"
+      it "responds successfully" do
+        sign_in user
+        get :edit, params: { id: expense.id }
+        expect(response).to have_http_status(:success)
+      end
     end
     context "as an unauthorized user" do
       it "redirects to index page"
     end
     context "as a guest" do
-      it "redirects to sign_in page"
+      it "redirects to sign_in page" do
+        get :show, params: { id: expense.id }
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to new_user_session_path
+      end
     end
   end
 

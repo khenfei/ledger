@@ -2,7 +2,7 @@ class CreateExpenses < ActiveRecord::Migration[5.2]
   def up
     execute <<-SQL
       CREATE TYPE expenses_category AS ENUM (
-        'apparel', 'entertainment', 'grocery', 'meal', 'utility', 'misc'
+        'apparel', 'entertainment', 'grocery', 'meal', 'utility', 'other'
       );
     SQL
 
