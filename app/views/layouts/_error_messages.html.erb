@@ -1,0 +1,10 @@
+<% if flash.any? %>
+  <% flash.each do |key, value| %>
+    <div id="error_explanation">
+      <div class="alert alert-<%= (key.eql? "alert") ? "danger" : "info" %> alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <p class="mb-0"><strong><%= value %></strong></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

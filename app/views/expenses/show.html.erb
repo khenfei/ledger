@@ -1,24 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @expense.category %>
-</p>
-
-<p>
-  <strong>Cost:</strong>
-  <%= @expense.total %>
-</p>
-
-<p>
-  <strong>Paid at:</strong>
-  <%= @expense.paid_at %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <%= @expense.tags_str %>
-</p>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">Tables</a>
+  </li>
+  <li class="breadcrumb-item active">Expense Detail</li>
+</ol>
+<%= render 'form', expense: @expense %>
 
 <%= link_to 'Edit', edit_expense_path(@expense) %> |
 <%= link_to 'Back', expenses_path %>

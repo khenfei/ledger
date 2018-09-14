@@ -11,27 +11,54 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <% if params['action'] === 'show' %>
+      <div class="form-group">
+        <%= form.label :category %>
+        <%= form.text_field :category, value: expense.category.capitalize, class: "form-control", disabled: 'disabled' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :total %>
-    <%= form.text_field :total %>
-  </div>
+      <div class="form-group">
+        <%= form.label :total %>
+        <%= form.number_field :total, class: "form-control form-field-number", min: 0, step: 0.01, disabled: 'disabled' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :paid_at %>
-    <%= form.date_select :paid_at %>
-  </div>
+      <div class="form-group">
+        <%= form.label :paid_at %>
+        <%= form.text_field :paid_at, value: expense.paid_at.strftime("%Y/%m/%d %H:%M"), class: "datetimepicker form-control", disabled: 'disabled' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :tags_str %>
-    <%= form.text_field :tags_str %>
-  </div>
+      <div class="form-group">
+        <%= form.label :tags_str, :Tags %>
+        <%= form.text_field :tags_str, class: "form-control", "data-role": "tags-input", disabled: 'disabled' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <% else %>
+      <div class="form-group">
+        <%= form.label :category %>
+        <%= form.select :category, (Expense.categories.reduce({}) { |result, (key, val)| result.merge({ key => val.capitalize }) }).invert, {}, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :total %>
+        <%= form.number_field :total, class: "form-control form-field-number", min: 0, step: 0.01 %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :paid_at %>
+        <%= form.text_field :paid_at, value: Time.now.strftime("%Y/%m/%d %H:%M"), class: "datetimepicker form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :tags_str, :Tags %>
+        <%= form.text_field :tags_str, class: "form-control", "data-role": "tags-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
