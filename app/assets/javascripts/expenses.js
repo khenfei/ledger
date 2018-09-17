@@ -12,6 +12,21 @@
     
     return tagElems.join('&nbsp;');
   }
+
+  let options = {};
+  let deleteLink = $.extend({
+    title: "Are you sure?",
+    body: "Select 'Delete' below if you want to remove this record.",
+    btnLabel: "Delete",
+  }, options);
+  deleteLink.toString = function(url = '{url}') {
+    return `<a href="#" data-link="${url}"` +
+    ` data-toggle="modal" data-target="#dialogModal"` +
+    ` data-action="delete" data-rel="nofollow"` +
+    ` data-title="${this.title}" data-body="${this.body}"` +
+    ` data-button-label="${this.btnLabel}"><i class="fas fa-trash-alt"></i></a>`;
+  }
+
   $(document).on('turbolinks:load', function () {
     //initialise dataTables
     $('#expense-dataTable').DataTable({
@@ -98,10 +113,10 @@
           responsivePriority: 2,
           render: function (data, type, full, meta) {
             const token = data.split(';');
+            
             return '<a href="' + 
               token[0] + '"><i class="fas fa-list"></i></a> | <a href="' + 
-              token[1] + '"><i class="fas fa-edit"></i></a> | <a href="' + 
-              token[0] + '" data-method="delete" data-confirm="Are you sure?" rel="nofollow"><i class="fas fa-trash-alt"></i></a>';
+              token[1] + '"><i class="fas fa-edit"></i></a> | ' + deleteLink.toString(token[0]);
           }
         }
       ]
