@@ -1,16 +1,24 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card card-login mx-auto mt-5">
+  <div class="card-header">
+    Reset Password
+    <%= link_to root_url do %>
+      <i class="fas fa-times close"></i>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="card-body">
+    <div class="text-center mt-4 mb-5">
+      <h4>Forgot your password?</h4>
+      <p>Enter your email address and we will send you instructions on how to reset your password.</p>
+    </div>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group position-relative">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", "aria-describedby": "emailHelp", placeholder: "Enter email address" %>
+      </div>
+      <%= f.submit "Send me reset password instructions", class:"btn btn-primary btn-block" %>
+    <% end %>
+    <div class="text-center fc-mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

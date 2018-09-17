@@ -1,29 +1,46 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">
+    Register an Account
+    <%= link_to root_url do %>
+      <i class="fas fa-times close"></i>
+    <% end %>
   </div>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-12">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control required", "aria-describedby": "emailHelp", placeholder: "Enter email" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-6 mb-3 mb-sm-0">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <div class="icon-container">
+              <i class="info fas fa-question-circle" 
+                data-toggle="popover"
+                data-trigger='hover' 
+                data-placement="right" 
+                data-content="<%= @minimum_password_length %> characters minimum"></i></div>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control required", placeholder: "Password" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :password_confirmation, "Confirm password" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control required", placeholder: "Confirm password" %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+    <% end %>
+    <div class="text-center fc-mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
