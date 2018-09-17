@@ -3,15 +3,22 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    authorize Expense
+    # result = ExpenseDatatable.new(params, user: current_user, view_context: view_context)
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: result }
+    # end
   end
 
   def data
+    respond_to do |format|
+      format.html
+      format.json { render json: ExpenseDatatable.new(params, user: current_user, view_context: view_context) }
+    end
   end
 
   def new
     @expense = Expense.new
-    authorize @expense
   end
 
   def show
@@ -23,7 +30,6 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.owner = current_user
-    authorize @expense
     respond_to do |format|
       if @expense.save
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }

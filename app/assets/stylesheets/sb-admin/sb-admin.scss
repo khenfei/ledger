@@ -10,3 +10,12 @@
 @import "cards.scss";
 @import "login.scss";
 @import "footer.scss";
+
+table.table-bordered.dataTable {
+ .child {
+    td {
+      border-bottom-width: 1px;
+    }
+  }
+}
+

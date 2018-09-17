@@ -1,3 +1,44 @@
-<h1>Expenses#index</h1>
-<p>Find me in app/views/expenses/index.html.erb</p>
-<%= link_to 'New Expense', new_expense_path %>
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">Dashboard</a>
+  </li>
+  <li class="breadcrumb-item active">Expenses</li>
+</ol>
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+  <div class="card-header d-flex flex-column flex-sm-row">
+    <span class="d-none d-sm-inline"><i class="fa fa-table"></i> Expense Listing</span>
+    <%= link_to new_expense_path, class: "ml-sm-auto" do %>
+      <i class="fa fa-plus"></i> New Expense
+    <% end %>
+    </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="expense-dataTable" width="100%" cellspacing="0" data-source="<%= expenses_data_path(format: :json) %>">
+        <thead>
+          <tr>
+            <th rowspan="1">Category</th>
+            <th rowspan="1">Total</th>
+            <th rowspan="1">Paid At</th>
+            <th rowspan="1">Tags</th>
+            <th rowspan="1">Links</th>          
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th rowspan="1">Category</th>
+            <th rowspan="1">Total</th>
+            <th rowspan="1">Paid At</th>
+            <th rowspan="1">Tags</th>
+            <th rowspan="1">Links</th>          
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+

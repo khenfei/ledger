@@ -11,8 +11,18 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery.color.plus-names-2.1.2.min
+//= require jquery.easing
 //= require popper
 //= require bootstrap
+//= require jquery.dataTables.min
+//= require dataTables.bootstrap4.min
+//= require dataTables.responsive.min
+//= require responsive.bootstrap4.min
+//= require jquery.datetimepicker.full.min
+//= require jquery-dateformat.min
+//= require jquery-tagsinput.min
+//= require Chart.bundle.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
