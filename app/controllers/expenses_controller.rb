@@ -3,11 +3,6 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    # result = ExpenseDatatable.new(params, user: current_user, view_context: view_context)
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: result }
-    # end
   end
 
   def data

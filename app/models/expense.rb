@@ -23,6 +23,8 @@ class Expense < ApplicationRecord
     convert_to_string( self[:tags] )
   end
 
+  scope :owner, -> (user) { where(owner: user) }
+
   private
 
   def convert_to_array( raw_string, options = {} )
