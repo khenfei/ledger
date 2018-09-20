@@ -88,6 +88,20 @@ ALTER SEQUENCE public.expenses_id_seq OWNED BY public.expenses.id;
 
 
 --
+-- Name: expenses_monthly_report; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.expenses_monthly_report AS
+ SELECT expenses.user_id,
+    COALESCE(sum(expenses.total), (0)::numeric) AS total,
+    (date_trunc('MONTH'::text, expenses.paid_at))::date AS year_month,
+    CURRENT_TIMESTAMP AS last_updated
+   FROM public.expenses
+  GROUP BY expenses.user_id, ((date_trunc('MONTH'::text, expenses.paid_at))::date)
+  WITH NO DATA;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -186,6 +200,13 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: expenses_monthly_report_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX expenses_monthly_report_idx ON public.expenses_monthly_report USING btree (user_id, year_month);
+
+
+--
 -- Name: index_expenses_on_tags; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -237,6 +258,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20180809052440'),
 ('20180811142004'),
-('20180913032642');
+('20180913032642'),
+('20180919232628');
 
 

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Expenses", type: :feature do
+  include LoginSupport
+
   let(:user) { FactoryBot.create(:user) }
   let(:expense) { FactoryBot.create(:expense, owner: user) }
   scenario "user visits table listing", js: true do
@@ -8,7 +10,7 @@ RSpec.feature "Expenses", type: :feature do
     FactoryBot.create(:expense, owner: user, category: 'apparel')
     FactoryBot.create(:expense, owner: user, category: 'grocery')
 
-    log_in user
+    sign_in_as user
     navigate_to_table_listing
 
     aggregate_failures {
@@ -20,8 +22,9 @@ RSpec.feature "Expenses", type: :feature do
   end
 
   scenario "user creates a new expense" do
-    log_in user
+    sign_in_as user
     navigate_to_table_listing
+    
     expect {
       click_link "New Expense"
       fill_in "Total", with: 50
@@ -33,8 +36,7 @@ RSpec.feature "Expenses", type: :feature do
     
   scenario "user edits an expense", js: true do
     expense
-
-    log_in user
+    sign_in_as user
     navigate_to_table_listing
     
     find(:css, ".fas.fa-edit").click
@@ -48,8 +50,7 @@ RSpec.feature "Expenses", type: :feature do
 
   scenario "user deletes an expense", js: true do
     expense
-
-    log_in user
+    sign_in_as user
     navigate_to_table_listing
 
     find(:css, ".fas.fa-trash-alt").click
@@ -59,18 +60,6 @@ RSpec.feature "Expenses", type: :feature do
       click_link "Delete"
       expect(page).to have_content "Expense was successfully destroyed."
     }.to change(Expense.owner(user), :count).by(-1)
-  end
-
-  def log_in user
-    visit root_path
-    find(:css, ".navbar-toggler-icon").click
-    expect(page).to have_content "Log in"
-    click_link "Log in"
-    expect(page).to have_content "Login"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
-    click_button "Login"
-    expect(page).to have_content "Signed in successfully."
   end
 
   def navigate_to_table_listing
