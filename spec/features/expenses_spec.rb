@@ -22,7 +22,8 @@ RSpec.feature "Expenses", type: :feature do
   end
 
   scenario "user creates a new expense" do
-    sign_in_as user
+    sign_in user
+    visit root_path
     navigate_to_table_listing
     
     expect {
@@ -36,7 +37,8 @@ RSpec.feature "Expenses", type: :feature do
     
   scenario "user edits an expense", js: true do
     expense
-    sign_in_as user
+    sign_in user
+    visit root_path
     navigate_to_table_listing
     
     find(:css, ".fas.fa-edit").click
@@ -50,7 +52,8 @@ RSpec.feature "Expenses", type: :feature do
 
   scenario "user deletes an expense", js: true do
     expense
-    sign_in_as user
+    sign_in user
+    visit root_path
     navigate_to_table_listing
 
     find(:css, ".fas.fa-trash-alt").click
