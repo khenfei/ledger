@@ -19,5 +19,7 @@ module Ledger
     config.generators.javascript_engine = :js
     
     config.active_record.schema_format = :sql
+
+    config.assets.initialize_on_precompile = false
   end
 end
