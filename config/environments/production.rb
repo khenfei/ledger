@@ -64,13 +64,13 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "ledger_#{Rails.env}"
 
 
-  config.action_mailer.default_url_options = { host: 'khenfei.com', port: 80 }
+  config.action_mailer.default_url_options = { host: 'ledger.khenfei.com', port: 80 }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              Rails.application.credentials.dev[:smtp_addr],
     port:                 Rails.application.credentials.dev[:smtp_port],
-    domain:               'khenfei.com',
+    domain:               'ledger.khenfei.com',
     user_name:            Rails.application.credentials.dev[:smtp_user],
     password:             Rails.application.credentials.dev[:smtp_pass],
     authentication:       'plain',
