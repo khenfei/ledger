@@ -64,7 +64,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "ledger_#{Rails.env}"
 
 
-  config.action_mailer.default_url_options = { host: 'ledger.khenfei.com', port: 443 }
+  config.action_mailer.default_url_options = { host: 'ledger.khenfei.com', :protocol => 'https' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
