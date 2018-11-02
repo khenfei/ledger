@@ -1,15 +1,20 @@
-#Ledger
+# Ledger
 A simple web application to keep track daily expense. 
 
-What inspires the creation of this project:
-1. I have a habit to keep track of my own expense by keeping all the receipts. This habit causes my drawer full of receipts. An improvement is needed to get rid of this issue.
-2. I started delving into Ruby Language not too long ago. I want to explore some common (GEM) libraries used in building a standard Ruby on rails web application.
+## Dependecies
+* Ruby 2.5
+* System dependencies
+    Ruby on rails 5.2
+    Devise 4.1
+    Pundit
+    Bootstrap 4.1
+
 
 ## Basic feature
 
 1. Authentication
     - Database Login
-    - Google Plus 0Auth
+    ~~Google Plus 0Auth~~
 2. Authorization
     - Access control
 3. Expense item CRUD operation.
@@ -18,33 +23,21 @@ What inspires the creation of this project:
 ## Future backlog
 5.  OCR data input support.
 
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Compilation
 
-Things you may want to cover:
+### Prerequisite
+1. postgres 12 is installed and database is setup.
+2. bundler is installed.
 
-* Ruby version
-2.5
+```bash
+$ git clone git@github.com:khenfei/ledger.git
+$ cd ledger
+##Before continue further, please remember to update config/database.yml to point to your database URL.
+$ rails db:setup        #to create databases
+$ rails db:migrate      #to apply all the SQL script
+$ rails server          #start server locally
 
-* System dependencies
-Ruby on rails 5.2
-Devise 4.1
-Pundit
-Bootstrap 4.1
-
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run spec
+$ rails spec
+```
