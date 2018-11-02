@@ -1,7 +1,7 @@
 ## Ledger
 A simple web application to keep track daily expense. 
 
-## Dependecies
+## Dependencies
 * Ruby 2.5
 * System dependencies
     Ruby on rails 5.2
