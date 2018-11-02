@@ -1,4 +1,4 @@
-# Ledger
+## Ledger
 A simple web application to keep track daily expense. 
 
 ## Dependecies
